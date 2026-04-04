@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modus Care — Disability Support Services</title>
+  <meta name="description" content="Modus Care delivers personalised disability support services across Australia, helping participants live with independence, dignity, and genuine care." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ══════════════════════════════════════════
+       DESIGN TOKENS — Playful Geometric System
+    ══════════════════════════════════════════ */
+    :root {
+      --bg:      #FFFDF5;
+      --fg:      #1E293B;
+      --muted:   #F1F5F9;
+      --mfg:     #64748B;
+      --accent:  #8B5CF6;
+      --pink:    #F472B6;
+      --amber:   #FBBF24;
+      --emerald: #34D399;
+      --border:  #E2E8F0;
+      --r-sm:    8px;
+      --r-md:    16px;
+      --r-lg:    24px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      margin: 0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, h5 {
+      font-family: 'Outfit', system-ui, sans-serif;
+      line-height: 1.15;
+      margin: 0;
+    }
+    p { margin: 0; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ──────────── Container ──────────── */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ──────────── Dot pattern ──────────── */
+    .dot-bg {
+      background-image: radial-gradient(circle, rgba(30,41,59,0.2) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+    }
+
+    /* ──────────── Hard shadows ──────────── */
+    .sh     { box-shadow: 4px 4px 0px 0px var(--fg); }
+    .sh-lg  { box-shadow: 8px 8px 0px 0px var(--fg); }
+    .sh-pk  { box-shadow: 8px 8px 0px 0px var(--pink); }
+    .sh-am  { box-shadow: 8px 8px 0px 0px var(--amber); }
+    .sh-vi  { box-shadow: 8px 8px 0px 0px var(--accent); }
+    .sh-em  { box-shadow: 8px 8px 0px 0px var(--emerald); }
+
+    /* ──────────── Candy Button (Primary) ──────────── */
+    .btn-candy {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 9999px;
+      border: 2px solid var(--fg);
+      box-shadow: 4px 4px 0px var(--fg);
+      padding: 14px 28px;
+      cursor: pointer;
+      transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .btn-candy .arr {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+    }
+    .btn-candy:hover  { transform: translate(-2px,-2px); box-shadow: 6px 6px 0px var(--fg); }
+    .btn-candy:active { transform: translate(2px,2px);   box-shadow: 2px 2px 0px var(--fg); }
+    .btn-candy:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+    /* ──────────── Ghost Button (Secondary) ──────────── */
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--fg);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 9999px;
+      border: 2px solid var(--fg);
+      padding: 14px 28px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .btn-ghost:hover  { background: var(--amber); transform: translate(-2px,-2px); }
+    .btn-ghost:active { transform: translate(2px,2px); }
+    .btn-ghost:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+    /* White ghost for dark bg */
+    .btn-ghost-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 9999px;
+      border: 2px solid #fff;
+      padding: 14px 28px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.18s cubic-bezier(0.34,1.56,0.64,1);
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .btn-ghost-white:hover { background: #fff; color: var(--fg); transform: translate(-2px,-2px); }
+    .btn-ghost-white:active { transform: translate(2px,2px); }
+
+    /* ──────────── Pill Badge ──────────── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 2px solid var(--fg);
+      border-radius: 9999px;
+      padding: 6px 16px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      background: white;
+      box-shadow: 3px 3px 0px var(--fg);
+    }
+    .badge-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* ──────────── Sticker Card ──────────── */
+    .card {
+      background: white;
+      border: 2px solid var(--fg);
+      border-radius: var(--r-md);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+      overflow: visible;
+      position: relative;
+    }
+    .card:hover { transform: rotate(-1.5deg) scale(1.03); }
+
+    /* ──────────── Nav link ──────────── */
+    .nav-a {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--fg);
+      padding: 7px 14px;
+      border-radius: var(--r-sm);
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-a:hover { background: var(--pink); color: #fff; }
+
+    /* ──────────── Squiggle heading underline ──────────── */
+    .squig { position: relative; display: inline-block; }
+    .squig::after {
+      content: '';
+      position: absolute;
+      bottom: -10px; left: 0; right: 0; height: 7px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='7' viewBox='0 0 120 7'%3E%3Cpath d='M0 3.5Q15 0 30 3.5Q45 7 60 3.5Q75 0 90 3.5Q105 7 120 3.5' stroke='%23FBBF24' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x center / 120px 7px;
+    }
+
+    /* ──────────── Section heading ──────────── */
+    .section-label {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--mfg);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::before, .section-label::after {
+      content: '';
+      flex: 1 1 0;
+      height: 2px;
+      background: var(--border);
+      max-width: 60px;
+    }
+
+    /* ──────────── Check item ──────────── */
+    .check-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .check-icon {
+      width: 30px; height: 30px; min-width: 30px;
+      border-radius: 50%;
+      background: var(--emerald);
+      border: 2px solid var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.9rem;
+      box-shadow: 2px 2px 0px var(--fg);
+    }
+
+    /* ──────────── Marquee ──────────── */
+    .marquee-wrap { overflow: hidden; }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 32s linear infinite;
+      gap: 0;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 24px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+    .marquee-star { font-size: 1.1rem; }
+
+    /* ──────────── Scroll reveal ──────────── */
+    .rv {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s cubic-bezier(0.34,1.56,0.64,1), transform 0.55s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .rv.in { opacity: 1; transform: none; }
+    .rv-pop {
+      opacity: 0;
+      transform: scale(0.75);
+      transition: opacity 0.5s cubic-bezier(0.34,1.56,0.64,1), transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .rv-pop.in { opacity: 1; transform: scale(1); }
+
+    /* ──────────── Float animations ──────────── */
+    @keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+    @keyframes floatB { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-10px) rotate(8deg)} }
+    @keyframes floatC { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-8px) rotate(-5deg)} }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    @keyframes wiggle  { 0%,100%{transform:rotate(0deg)} 25%{transform:rotate(7deg)} 75%{transform:rotate(-7deg)} }
+    @keyframes spin    { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+    .fa { animation: floatA 4s ease-in-out infinite; }
+    .fb { animation: floatB 5.5s ease-in-out infinite 0.7s; }
+    .fc { animation: floatC 6s ease-in-out infinite 1.4s; }
+
+    .ico-hover:hover { animation: wiggle 0.5s ease; }
+
+    /* ──────────── Star spin ──────────── */
+    .spin-slow { animation: spin 12s linear infinite; }
+
+    /* ──────────── Service card floating icon ──────────── */
+    .svc-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      border: 2px solid var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      position: absolute;
+      top: -28px; left: 24px;
+      box-shadow: 3px 3px 0px var(--fg);
+    }
+
+    /* ──────────── Mobile nav ──────────── */
+    #mobile-nav { display: none; }
+    #mobile-nav.open { display: flex; }
+
+    /* ──────────── Reduced motion ──────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .fa,.fb,.fc,.marquee-track,.spin-slow { animation: none; }
+      .btn-candy:hover,.btn-ghost:hover,.card:hover { transform: none; box-shadow: inherit; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═════════════════════════════════════════
+       NAV
+  ═════════════════════════════════════════ -->
+  <nav style="background:white; border-bottom:2px solid var(--fg); position:sticky; top:0; z-index:100;">
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; height:72px;">
+      <!-- Logo -->
+      <a href="/" style="flex-shrink:0;">
+        <img src="brand_assets/Modus Care Logo.png" alt="Modus Care" style="height:50px; width:auto;" />
+      </a>
+
+      <!-- Desktop links -->
+      <div class="desktop-links" style="display:flex; align-items:center; gap:4px;">
+        <a href="#about"     class="nav-a">About</a>
+        <a href="#services"  class="nav-a">Services</a>
+        <a href="#why"       class="nav-a">Why Us</a>
+        <a href="#locations" class="nav-a">Locations</a>
+        <a href="#contact"   class="nav-a">Contact</a>
+      </div>
+
+      <!-- CTA + Hamburger -->
+      <div style="display:flex; align-items:center; gap:12px;">
+        <a href="#contact" class="btn-candy" style="padding:11px 22px; font-size:0.9rem; display:none;" id="nav-cta">
+          Make an Enquiry <span class="arr">→</span>
+        </a>
+        <button id="ham-btn" onclick="document.getElementById('mobile-nav').classList.toggle('open')"
+          style="background:none; border:2px solid var(--fg); border-radius:var(--r-sm); width:42px; height:42px; display:none; align-items:center; justify-content:center; cursor:pointer; flex-direction:column; gap:5px; padding:8px;"
+          aria-label="Toggle menu">
+          <span style="display:block; width:20px; height:2px; background:var(--fg);"></span>
+          <span style="display:block; width:20px; height:2px; background:var(--fg);"></span>
+          <span style="display:block; width:20px; height:2px; background:var(--fg);"></span>
+        </button>
+        <a href="#contact" class="btn-candy" style="padding:11px 22px; font-size:0.9rem;" id="nav-cta-desk">
+          Make an Enquiry <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-nav" style="flex-direction:column; border-top:2px solid var(--fg); background:white; padding-bottom:16px;">
+      <a href="#about"     class="nav-a" style="display:block; padding:14px 24px; border-radius:0;">About</a>
+      <a href="#services"  class="nav-a" style="display:block; padding:14px 24px; border-radius:0;">Services</a>
+      <a href="#why"       class="nav-a" style="display:block; padding:14px 24px; border-radius:0;">Why Us</a>
+      <a href="#locations" class="nav-a" style="display:block; padding:14px 24px; border-radius:0;">Locations</a>
+      <a href="#contact"   class="nav-a" style="display:block; padding:14px 24px; border-radius:0;">Contact</a>
+      <div style="padding:12px 24px 0;">
+        <a href="#contact" class="btn-candy" style="width:100%; justify-content:center;">Make an Enquiry <span class="arr">→</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═════════════════════════════════════════
+       HERO
+  ═════════════════════════════════════════ -->
+  <section style="background:var(--bg); padding:80px 0 100px; position:relative; overflow:hidden;">
+
+    <!-- Dot pattern (right quadrant) -->
+    <div class="dot-bg" style="position:absolute; top:0; right:0; width:50%; height:100%; opacity:0.4; pointer-events:none;"></div>
+
+    <!-- Big amber circle (top-left decor) -->
+    <div class="fa" style="position:absolute; top:-120px; left:-120px; width:500px; height:500px; border-radius:50%; background:var(--amber); border:2px solid var(--fg); opacity:0.18; pointer-events:none;"></div>
+
+    <!-- Floating confetti shapes -->
+    <div class="fb" style="position:absolute; top:12%; right:8%; width:36px; height:36px; border-radius:50%; background:var(--pink); border:2px solid var(--fg); box-shadow:3px 3px 0 var(--fg); pointer-events:none;"></div>
+    <div class="fc" style="position:absolute; bottom:18%; right:15%; width:26px; height:26px; background:var(--emerald); border:2px solid var(--fg); transform:rotate(20deg); box-shadow:2px 2px 0 var(--fg); pointer-events:none;"></div>
+    <div class="fa" style="position:absolute; top:55%; left:3%; width:22px; height:22px; border-radius:50%; background:var(--accent); border:2px solid var(--fg); pointer-events:none; animation-delay:1.2s;"></div>
+    <div class="fb" style="position:absolute; top:25%; left:47%; width:18px; height:18px; background:var(--pink); border:2px solid var(--fg); transform:rotate(45deg); pointer-events:none; animation-delay:0.4s;"></div>
+    <!-- Triangle SVG -->
+    <div class="fc" style="position:absolute; bottom:30%; left:42%; pointer-events:none;">
+      <svg width="28" height="28" viewBox="0 0 28 28"><polygon points="14,2 27,26 1,26" fill="var(--amber)" stroke="var(--fg)" stroke-width="2"/></svg>
+    </div>
+    <div class="fa" style="position:absolute; top:10%; right:32%; pointer-events:none; animation-delay:2s;">
+      <svg width="22" height="22" viewBox="0 0 22 22"><polygon points="11,1 21,21 1,21" fill="var(--emerald)" stroke="var(--fg)" stroke-width="2"/></svg>
+    </div>
+
+    <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; position:relative; z-index:1;">
+
+      <!-- LEFT: copy -->
+      <div>
+        <!-- Badge -->
+        <div class="badge rv" style="margin-bottom:28px;">
+          <span class="badge-dot" style="background:var(--emerald);"></span>
+          Disability Support Provider
+        </div>
+
+        <!-- H1 -->
+        <h1 class="rv" style="font-weight:800; font-size:clamp(2rem,4.5vw,3.4rem); color:var(--fg); margin-bottom:22px; transition-delay:0.07s;">
+          Disability supports &amp;<br />services designed<br />just for&nbsp;<span style="color:var(--accent); position:relative;" class="squig">YOU</span>
+        </h1>
+
+        <!-- Body -->
+        <p class="rv" style="font-size:1.05rem; color:var(--mfg); line-height:1.8; max-width:480px; margin-bottom:36px; transition-delay:0.14s;">
+          Modus Care delivers personalised disability support services across Australia. We're here to help you live the life you choose — with independence, dignity, and genuine care.
+        </p>
+
+        <!-- Buttons -->
+        <div class="rv" style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:44px; transition-delay:0.21s;">
+          <a href="#services" class="btn-candy">Explore Services <span class="arr">→</span></a>
+          <a href="#contact"  class="btn-ghost">Get in Touch</a>
+        </div>
+
+        <!-- Mini trust stats -->
+        <div class="rv" style="display:flex; align-items:center; gap:20px; flex-wrap:wrap; transition-delay:0.28s;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:var(--accent); border:2px solid var(--fg); display:flex; align-items:center; justify-content:center; box-shadow:3px 3px 0 var(--fg); font-family:'Outfit',sans-serif; font-weight:800; font-size:0.72rem; color:white; line-height:1; text-align:center;">500+</div>
+            <span style="font-size:0.88rem; color:var(--mfg); font-weight:500;">Participants</span>
+          </div>
+          <div style="width:2px; height:40px; background:var(--border);"></div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:var(--amber); border:2px solid var(--fg); display:flex; align-items:center; justify-content:center; box-shadow:3px 3px 0 var(--fg); font-family:'Outfit',sans-serif; font-weight:800; font-size:0.72rem; color:var(--fg); line-height:1; text-align:center;">10+</div>
+            <span style="font-size:0.88rem; color:var(--mfg); font-weight:500;">Years Exp.</span>
+          </div>
+          <div style="width:2px; height:40px; background:var(--border);"></div>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div style="width:44px; height:44px; border-radius:50%; background:var(--emerald); border:2px solid var(--fg); display:flex; align-items:center; justify-content:center; box-shadow:3px 3px 0 var(--fg); font-family:'Outfit',sans-serif; font-weight:800; font-size:1rem; color:white;">✓</div>
+            <span style="font-size:0.88rem; color:var(--mfg); font-weight:500;">NDIS Approved</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: image area -->
+      <div style="position:relative; display:flex; justify-content:center; align-items:center;">
+        <!-- Big amber circle behind image -->
+
+        <!-- Main image — blob radius speech-bubble style -->
+        <div class="rv" style="position:relative; z-index:1; transition-delay:0.1s; width:100%; max-width:440px;">
+          <img src="brand_assets\people_with_backgrounds\cream background.jpg"
+            alt="Modus Care support worker with participant"
+            style="width:100%; border-radius:24px 24px 24px 0; border:2px solid var(--fg); box-shadow:8px 8px 0 var(--fg);" />
+        </div>
+
+        <!-- Floating NDIS card -->
+        <div class="fb" style="position:absolute; bottom:-10px; right:-20px; background:white; border:2px solid var(--fg); border-radius:var(--r-md); padding:14px 20px; box-shadow:4px 4px 0 var(--fg); z-index:2; display:flex; align-items:center; gap:12px;">
+          <div style="width:38px; height:38px; border-radius:50%; background:var(--emerald); border:2px solid var(--fg); display:flex; align-items:center; justify-content:center; font-size:1rem; box-shadow:2px 2px 0 var(--fg);">✓</div>
+          <div>
+            <div style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.88rem; color:var(--fg);">Trusted Provider</div>
+            <div style="font-size:0.74rem; color:var(--mfg);">Quality Care</div>
+          </div>
+        </div>
+
+        <!-- Floating star badge -->
+        <div class="fa" style="position:absolute; top:-20px; left:-10px; width:72px; height:72px; z-index:2; animation-delay:1.5s;">
+          <svg viewBox="0 0 72 72" width="72" height="72">
+            <polygon points="36,4 44,28 70,28 50,44 58,68 36,52 14,68 22,44 2,28 28,28" fill="var(--amber)" stroke="var(--fg)" stroke-width="2"/>
+            <text x="36" y="40" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="10" fill="var(--fg)">5★</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       MARQUEE STRIP
+  ═════════════════════════════════════════ -->
+  <div style="background:var(--fg); border-top:2px solid var(--fg); border-bottom:2px solid var(--fg); padding:18px 0; overflow:hidden;">
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <!-- Repeat twice for seamless loop -->
+        <div class="marquee-item" style="color:var(--amber);">
+          <span class="marquee-star">✦</span> Disability Support
+          <span class="marquee-star" style="color:var(--pink);">✦</span>
+          <span style="color:white;">Supported Living</span>
+          <span class="marquee-star" style="color:var(--emerald);">✦</span>
+          <span style="color:var(--pink);">Support Coordination</span>
+          <span class="marquee-star" style="color:var(--amber);">✦</span>
+          <span style="color:white;">Community Access</span>
+          <span class="marquee-star" style="color:var(--pink);">✦</span>
+          <span style="color:var(--emerald);">Daily Living Skills</span>
+          <span class="marquee-star" style="color:var(--amber);">✦</span>
+          <span style="color:white;">Transport Assistance</span>
+          <span class="marquee-star" style="color:var(--emerald);">✦</span>
+          <span style="color:var(--amber);">Allied Health</span>
+          <span class="marquee-star" style="color:var(--pink);">✦</span>
+          <span style="color:white;">Plan Management</span>
+          <span class="marquee-star" style="color:var(--amber);">✦</span>
+        </div>
+        <!-- Duplicate for loop -->
+        <div class="marquee-item" style="color:var(--amber);">
+          <span class="marquee-star">✦</span> Disability Support
+          <span class="marquee-star" style="color:var(--pink);">✦</span>
+          <span style="color:white;">Supported Living</span>
+          <span class="marquee-star" style="color:var(--emerald);">✦</span>
+          <span style="color:var(--pink);">Support Coordination</span>
+          <span class="marquee-star" style="color:var(--amber);">✦</span>
+          <span style="color:white;">Community Access</span>
+          <span class="marquee-star" style="color:var(--pink);">✦</span>
+          <span style="color:var(--emerald);">Daily Living Skills</span>
+          <span class="marquee-star" style="color:var(--amber);">✦</span>
+          <span style="color:white;">Transport Assistance</span>
+          <span class="marquee-star" style="color:var(--emerald);">✦</span>
+          <span style="color:var(--amber);">Allied Health</span>
+          <span class="marquee-star" style="color:var(--pink);">✦</span>
+          <span style="color:white;">Plan Management</span>
+          <span class="marquee-star" style="color:var(--amber);">✦</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════════════════════════
+       ABOUT / JOURNEY
+  ═════════════════════════════════════════ -->
+  <section id="about" style="padding:96px 0; background:var(--bg);">
+    <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center;">
+
+      <!-- LEFT: image with dot pattern box -->
+      <div style="position:relative;" class="rv">
+        <!-- Dot pattern box behind image -->
+        <div class="dot-bg" style="position:absolute; inset:-20px; border-radius:var(--r-lg); border:2px solid var(--border); z-index:0;"></div>
+
+        <!-- Big violet blob circle -->
+        <div style="position:absolute; bottom:-30px; right:-30px; width:200px; height:200px; border-radius:50%; background:var(--accent); border:2px solid var(--fg); opacity:0.15; z-index:0;"></div>
+
+        <!-- Main image -->
+        <div style="position:relative; z-index:1;">
+          <img src="brand_assets\people_with_backgrounds\red background.jpg"
+            alt="Modus Care participant on their journey"
+            style="width:100%; border-radius:24px 24px 24px 0; border:2px solid var(--fg); box-shadow:8px 8px 0 var(--fg);" />
+        </div>
+
+        <!-- Floating stat card -->
+        <div class="fb" style="position:absolute; bottom:-24px; left:-24px; background:var(--amber); border:2px solid var(--fg); border-radius:var(--r-md); padding:16px 22px; box-shadow:4px 4px 0 var(--fg); z-index:2;">
+          <div style="font-family:'Outfit',sans-serif; font-weight:900; font-size:1.8rem; color:var(--fg); line-height:1;">98%</div>
+          <div style="font-family:'Outfit',sans-serif; font-weight:600; font-size:0.78rem; color:var(--fg); opacity:0.75; margin-top:2px;">Participant Satisfaction</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: copy -->
+      <div>
+        <div class="section-label rv" style="margin-bottom:20px;">Our Promise</div>
+        <h2 class="rv" style="font-weight:800; font-size:clamp(1.8rem,3vw,2.6rem); color:var(--fg); margin-bottom:18px; transition-delay:0.07s;">
+          Your journey,<br /><span class="squig" style="color:var(--accent);">our commitment.</span>
+        </h2>
+        <p class="rv" style="color:var(--mfg); line-height:1.8; font-size:1.02rem; margin-bottom:32px; transition-delay:0.14s;">
+          At Modus Care, we believe every person deserves to live a fulfilling life on their own terms. Our dedicated team works alongside you — understanding your goals, your needs, and your dreams — to provide support that truly makes a difference.
+        </p>
+
+        <div class="rv" style="display:flex; flex-direction:column; gap:18px; margin-bottom:36px; transition-delay:0.21s;">
+          <div class="check-row">
+            <div class="check-icon">✓</div>
+            <div>
+              <div style="font-family:'Outfit',sans-serif; font-weight:700; font-size:1rem; color:var(--fg);">Person-Centred Approach</div>
+              <div style="color:var(--mfg); font-size:0.9rem;">Your goals guide everything. We tailor support to your unique needs and aspirations.</div>
+            </div>
+          </div>
+          <div class="check-row">
+            <div class="check-icon" style="background:var(--accent);">✓</div>
+            <div>
+              <div style="font-family:'Outfit',sans-serif; font-weight:700; font-size:1rem; color:var(--fg);">Experienced & Caring Team</div>
+              <div style="color:var(--mfg); font-size:0.9rem;">Support workers who are trained, vetted, and genuinely passionate about care.</div>
+            </div>
+          </div>
+          <div class="check-row">
+            <div class="check-icon" style="background:var(--pink);">✓</div>
+            <div>
+              <div style="font-family:'Outfit',sans-serif; font-weight:700; font-size:1rem; color:var(--fg);">Flexible & Responsive</div>
+              <div style="color:var(--mfg); font-size:0.9rem;">Life changes — and so do we. We adapt to meet your evolving needs at every stage.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rv" style="transition-delay:0.28s;">
+          <a href="#contact" class="btn-candy">Learn More About Us <span class="arr">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       SERVICES
+  ═════════════════════════════════════════ -->
+  <section id="services" style="padding:96px 0; background:white; border-top:2px solid var(--border);">
+    <!-- Big pink circle decor -->
+    <div style="position:absolute; left:-100px; top:40%; width:300px; height:300px; border-radius:50%; background:var(--pink); opacity:0.07; pointer-events:none; z-index:0;"></div>
+
+    <div class="wrap" style="position:relative; z-index:1;">
+      <div style="text-align:center; margin-bottom:72px;">
+        <div class="section-label rv" style="justify-content:center; margin-bottom:18px;">What We Offer</div>
+        <h2 class="rv" style="font-weight:800; font-size:clamp(1.8rem,3vw,2.6rem); color:var(--fg); margin-bottom:14px; transition-delay:0.07s;">
+          Disability <span class="squig" style="color:var(--pink);">Supports</span> and Services
+        </h2>
+        <p class="rv" style="color:var(--mfg); max-width:520px; margin:0 auto; font-size:1rem; line-height:1.75; transition-delay:0.14s;">
+          From daily living assistance to specialist support — all designed around your NDIS plan and personal goals.
+        </p>
+      </div>
+
+      <!-- Connected dashed line (background) -->
+      <div style="position:relative;">
+        <div style="position:absolute; top:28px; left:15%; right:15%; height:2px; border-top:2px dashed var(--border); pointer-events:none; z-index:0;"></div>
+
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:36px 28px; position:relative; z-index:1;">
+
+          <!-- SIL -->
+          <div class="card sh-pk rv" style="padding:64px 24px 28px; transition-delay:0.0s;">
+            <div class="svc-icon ico-hover" style="background:var(--pink);">🏠</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:1.1rem; color:var(--fg); margin-bottom:10px;">Supported Independent Living</h3>
+            <p style="color:var(--mfg); font-size:0.88rem; line-height:1.7; margin-bottom:18px;">Assistance with daily tasks in a shared or individual home setting, helping you live as independently as possible.</p>
+            <a href="#" style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.85rem; color:var(--pink); display:inline-flex; align-items:center; gap:5px;">Learn More →</a>
+          </div>
+
+          <!-- Support Coord -->
+          <div class="card sh-am rv" style="padding:64px 24px 28px; transition-delay:0.08s;">
+            <div class="svc-icon ico-hover" style="background:var(--amber);">🤝</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:1.1rem; color:var(--fg); margin-bottom:10px;">Support Coordination</h3>
+            <p style="color:var(--mfg); font-size:0.88rem; line-height:1.7; margin-bottom:18px;">Expert guidance to help you understand and implement your NDIS plan, connecting you with the right providers.</p>
+            <a href="#" style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.85rem; color:#996600; display:inline-flex; align-items:center; gap:5px;">Learn More →</a>
+          </div>
+
+          <!-- Community -->
+          <div class="card sh-vi rv" style="padding:64px 24px 28px; transition-delay:0.16s;">
+            <div class="svc-icon ico-hover" style="background:var(--accent);">🌟</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:1.1rem; color:var(--fg); margin-bottom:10px;">Community Participation</h3>
+            <p style="color:var(--mfg); font-size:0.88rem; line-height:1.7; margin-bottom:18px;">Support to engage with your community, build social connections, and participate in activities you love.</p>
+            <a href="#" style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.85rem; color:var(--accent); display:inline-flex; align-items:center; gap:5px;">Learn More →</a>
+          </div>
+
+          <!-- Daily Living -->
+          <div class="card sh-em rv" style="padding:64px 24px 28px; transition-delay:0.24s;">
+            <div class="svc-icon ico-hover" style="background:var(--emerald);">🧠</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:1.1rem; color:var(--fg); margin-bottom:10px;">Daily Living & Life Skills</h3>
+            <p style="color:var(--mfg); font-size:0.88rem; line-height:1.7; margin-bottom:18px;">Build essential life skills and confidence to manage everyday tasks — from cooking to personal care and budgeting.</p>
+            <a href="#" style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.85rem; color:#059669; display:inline-flex; align-items:center; gap:5px;">Learn More →</a>
+          </div>
+
+          <!-- Transport -->
+          <div class="card sh-pk rv" style="padding:64px 24px 28px; transition-delay:0.32s;">
+            <div class="svc-icon ico-hover" style="background:var(--pink);">🚗</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:1.1rem; color:var(--fg); margin-bottom:10px;">Transport Assistance</h3>
+            <p style="color:var(--mfg); font-size:0.88rem; line-height:1.7; margin-bottom:18px;">Reliable transport support to help you get to appointments, activities, and anywhere else life takes you.</p>
+            <a href="#" style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.85rem; color:var(--pink); display:inline-flex; align-items:center; gap:5px;">Learn More →</a>
+          </div>
+
+          <!-- Allied Health -->
+          <div class="card sh-am rv" style="padding:64px 24px 28px; transition-delay:0.40s;">
+            <div class="svc-icon ico-hover" style="background:var(--amber);">🏋️</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:1.1rem; color:var(--fg); margin-bottom:10px;">Therapy & Allied Health</h3>
+            <p style="color:var(--mfg); font-size:0.88rem; line-height:1.7; margin-bottom:18px;">Access to occupational therapy, physiotherapy, speech pathology, and other allied health professionals.</p>
+            <a href="#" style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.85rem; color:#996600; display:inline-flex; align-items:center; gap:5px;">Learn More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       LOCATIONS
+  ═════════════════════════════════════════ -->
+  <section id="locations" style="padding:96px 0; background:var(--bg);">
+    <div class="wrap">
+      <div style="text-align:center; margin-bottom:56px;">
+        <div class="section-label rv" style="justify-content:center; margin-bottom:18px;">Where We Operate</div>
+        <h2 class="rv" style="font-weight:800; font-size:clamp(1.8rem,3vw,2.6rem); color:var(--fg); transition-delay:0.07s;">
+          Find support in <span class="squig" style="color:var(--accent);">your area</span>
+        </h2>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:28px;">
+
+        <!-- VIC -->
+        <div class="card sh-vi rv" style="transition-delay:0.0s;">
+          <div style="background:var(--accent); border-radius:12px 12px 0 0; padding:28px 24px; border-bottom:2px solid var(--fg);">
+            <div style="font-size:2rem; margin-bottom:8px;">🏙️</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-weight:800; color:white; font-size:1.3rem; margin-bottom:4px;">Victoria</h3>
+            <p style="color:rgba(255,255,255,0.8); font-size:0.85rem;">Melbourne & surrounds</p>
+          </div>
+          <div style="padding:24px;">
+            <p style="color:var(--mfg); font-size:0.92rem; line-height:1.7; margin-bottom:20px;">Delivering disability support across the Melbourne metro area and regional Victoria.</p>
+            <a href="#" style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.88rem; color:var(--accent); display:inline-flex; align-items:center; gap:6px;">
+              Explore services <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- NSW -->
+        <div class="card sh-pk rv" style="transition-delay:0.1s;">
+          <div style="background:var(--pink); border-radius:12px 12px 0 0; padding:28px 24px; border-bottom:2px solid var(--fg);">
+            <div style="font-size:2rem; margin-bottom:8px;">🌉</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-weight:800; color:white; font-size:1.3rem; margin-bottom:4px;">New South Wales</h3>
+            <p style="color:rgba(255,255,255,0.85); font-size:0.85rem;">Sydney & surrounds</p>
+          </div>
+          <div style="padding:24px;">
+            <p style="color:var(--mfg); font-size:0.92rem; line-height:1.7; margin-bottom:20px;">Expanding our presence in New South Wales with personalised disability support services.</p>
+            <a href="#" style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.88rem; color:var(--pink); display:inline-flex; align-items:center; gap:6px;">
+              Explore services <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- QLD -->
+        <div class="card sh-am rv" style="transition-delay:0.2s;">
+          <div style="background:var(--amber); border-radius:12px 12px 0 0; padding:28px 24px; border-bottom:2px solid var(--fg);">
+            <div style="font-size:2rem; margin-bottom:8px;">☀️</div>
+            <h3 style="font-family:'Outfit',sans-serif; font-weight:800; color:var(--fg); font-size:1.3rem; margin-bottom:4px;">Queensland</h3>
+            <p style="color:rgba(30,41,59,0.65); font-size:0.85rem;">Brisbane & surrounds</p>
+          </div>
+          <div style="padding:24px;">
+            <p style="color:var(--mfg); font-size:0.92rem; line-height:1.7; margin-bottom:20px;">Supporting participants across Queensland with a full range of disability support services.</p>
+            <a href="#" style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.88rem; color:#996600; display:inline-flex; align-items:center; gap:6px;">
+              Explore services <span>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       WHY CHOOSE
+  ═════════════════════════════════════════ -->
+  <section id="why" style="padding:96px 0; background:white; border-top:2px solid var(--border);">
+    <div class="wrap">
+      <div style="display:grid; grid-template-columns:1fr 1.1fr; gap:72px; align-items:start;">
+
+        <!-- LEFT: heading + image -->
+        <div class="rv">
+          <div class="section-label" style="margin-bottom:20px;">Why Us</div>
+          <h2 style="font-weight:800; font-size:clamp(1.8rem,3vw,2.6rem); color:var(--fg); margin-bottom:18px;">
+            Why choose<br />Modus Care?
+          </h2>
+          <p style="color:var(--mfg); line-height:1.8; margin-bottom:36px; font-size:1rem;">
+            We go beyond ticking boxes. Our team is driven by genuine passion to make a difference in the lives of people with disabilities — every single day.
+          </p>
+
+          <!-- Image with spinning star decor -->
+          <div style="position:relative; display:inline-block;">
+            <img src="brand_assets\people_with_backgrounds\grey background.jpg"
+              alt="Modus Care team"
+              style="width:100%; border-radius:var(--r-lg); border:2px solid var(--fg); box-shadow:8px 8px 0 var(--fg);" />
+            <!-- Spinning star -->
+            <div class="spin-slow" style="position:absolute; top:-20px; right:-20px; width:64px; height:64px;">
+              <svg viewBox="0 0 64 64" width="64" height="64">
+                <polygon points="32,4 38,24 60,24 43,38 50,58 32,45 14,58 21,38 4,24 26,24" fill="var(--accent)" stroke="var(--fg)" stroke-width="2"/>
+                <text x="32" y="36" text-anchor="middle" font-family="Outfit,sans-serif" font-weight="800" font-size="9" fill="white">TOP</text>
+              </svg>
+            </div>
+            <!-- Floating % card -->
+            <div class="fa" style="position:absolute; bottom:-20px; left:-20px; background:var(--accent); border:2px solid var(--fg); border-radius:var(--r-md); padding:14px 18px; box-shadow:4px 4px 0 var(--fg);">
+              <div style="font-family:'Outfit',sans-serif; font-weight:900; font-size:1.6rem; color:white; line-height:1;">98%</div>
+              <div style="font-family:'Outfit',sans-serif; font-weight:600; font-size:0.72rem; color:rgba(255,255,255,0.8);">Satisfaction Rate</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: 3×2 why-cards grid -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+
+          <div class="card rv" style="padding:22px; box-shadow:5px 5px 0 var(--pink); transition-delay:0.0s;">
+            <div style="font-size:2rem; margin-bottom:12px;" class="ico-hover">❤️</div>
+            <h4 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:0.95rem; color:var(--fg); margin-bottom:6px;">Compassionate Care</h4>
+            <p style="font-size:0.82rem; color:var(--mfg); line-height:1.6;">We treat every participant with dignity, empathy, and genuine kindness.</p>
+          </div>
+
+          <div class="card rv" style="padding:22px; box-shadow:5px 5px 0 var(--amber); transition-delay:0.08s;">
+            <div style="font-size:2rem; margin-bottom:12px;" class="ico-hover">🎯</div>
+            <h4 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:0.95rem; color:var(--fg); margin-bottom:6px;">Goal-Focused</h4>
+            <p style="font-size:0.82rem; color:var(--mfg); line-height:1.6;">Your personal goals shape every decision we make together.</p>
+          </div>
+
+          <div class="card rv" style="padding:22px; box-shadow:5px 5px 0 var(--emerald); transition-delay:0.16s;">
+            <div style="font-size:2rem; margin-bottom:12px;" class="ico-hover">🛡️</div>
+            <h4 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:0.95rem; color:var(--fg); margin-bottom:6px;">Safe & Professional</h4>
+            <p style="font-size:0.82rem; color:var(--mfg); line-height:1.6;">Committed to the highest professional and safety standards in every interaction.</p>
+          </div>
+
+          <div class="card rv" style="padding:22px; box-shadow:5px 5px 0 var(--accent); transition-delay:0.24s;">
+            <div style="font-size:2rem; margin-bottom:12px;" class="ico-hover">🌐</div>
+            <h4 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:0.95rem; color:var(--fg); margin-bottom:6px;">Culturally Inclusive</h4>
+            <p style="font-size:0.82rem; color:var(--mfg); line-height:1.6;">Workers from diverse backgrounds who understand your culture.</p>
+          </div>
+
+          <div class="card rv" style="padding:22px; box-shadow:5px 5px 0 var(--pink); transition-delay:0.32s;">
+            <div style="font-size:2rem; margin-bottom:12px;" class="ico-hover">📋</div>
+            <h4 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:0.95rem; color:var(--fg); margin-bottom:6px;">Plan Experts</h4>
+            <p style="font-size:0.82rem; color:var(--mfg); line-height:1.6;">We help you get every dollar of value from your NDIS plan.</p>
+          </div>
+
+          <div class="card rv" style="padding:22px; box-shadow:5px 5px 0 var(--amber); transition-delay:0.40s;">
+            <div style="font-size:2rem; margin-bottom:12px;" class="ico-hover">🕐</div>
+            <h4 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:0.95rem; color:var(--fg); margin-bottom:6px;">24/7 Available</h4>
+            <p style="font-size:0.82rem; color:var(--mfg); line-height:1.6;">Around-the-clock support when you need it most.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       NDIS APPROVED BAND
+  ═════════════════════════════════════════ -->
+  <section style="background:var(--accent); border-top:2px solid var(--fg); border-bottom:2px solid var(--fg); padding:72px 0; position:relative; overflow:hidden;">
+    <!-- Decorative shapes -->
+    <div class="fc" style="position:absolute; top:-40px; right:5%; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,0.12); pointer-events:none;"></div>
+    <div class="fb" style="position:absolute; bottom:-30px; left:8%; width:140px; height:140px; border-radius:50%; background:rgba(255,255,255,0.08); pointer-events:none;"></div>
+    <div style="position:absolute; top:20px; right:25%; pointer-events:none; opacity:0.2;">
+      <svg width="40" height="40" viewBox="0 0 40 40"><polygon points="20,2 38,38 2,38" fill="white" stroke="white" stroke-width="1.5"/></svg>
+    </div>
+
+    <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap; position:relative; z-index:1;">
+      <div class="rv">
+        <div style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.8rem; color:rgba(255,255,255,0.7); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;">Our Commitment</div>
+        <h2 style="font-family:'Outfit',sans-serif; font-weight:800; font-size:clamp(1.5rem,2.5vw,2.1rem); color:white; margin-bottom:12px; line-height:1.2;">
+          Your trusted partner<br />in disability support and care
+        </h2>
+        <p style="color:rgba(255,255,255,0.75); font-size:0.97rem; max-width:480px; line-height:1.7;">
+          We are committed to delivering safe, respectful, and high-quality support so you can trust us with confidence every step of the way.
+        </p>
+      </div>
+      <div style="display:flex; gap:16px; flex-shrink:0;" class="rv" style="transition-delay:0.1s;">
+        <div style="background:rgba(255,255,255,0.12); border:2px solid rgba(255,255,255,0.3); border-radius:var(--r-lg); padding:28px 32px; text-align:center; backdrop-filter:blur(8px);">
+          <img src="brand_assets/Modus Care Logo.png" alt="Modus Care" style="height:48px; width:auto; margin:0 auto 12px; filter:brightness(0) invert(1);" />
+          <div style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.85rem; color:white;">Disability Support</div>
+          <div style="font-size:0.75rem; color:rgba(255,255,255,0.65);">moduscare.com.au</div>
+        </div>
+        <div style="background:var(--amber); border:2px solid var(--fg); border-radius:var(--r-lg); padding:28px 24px; text-align:center; box-shadow:6px 6px 0 var(--fg);">
+          <div style="font-size:2.5rem; margin-bottom:4px;">✓</div>
+          <div style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.85rem; color:var(--fg);">Quality Assured</div>
+          <div style="font-size:0.75rem; color:var(--fg); opacity:0.7;">Professional Care</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       COMMUNITY GALLERY
+  ═════════════════════════════════════════ -->
+  <section style="padding:96px 0; background:var(--bg);">
+    <div class="wrap">
+      <div style="text-align:center; margin-bottom:56px;">
+        <div class="section-label rv" style="justify-content:center; margin-bottom:18px;">Our Community</div>
+        <h2 class="rv" style="font-weight:800; font-size:clamp(1.8rem,3vw,2.6rem); color:var(--fg); transition-delay:0.07s;">
+          Our <span class="squig" style="color:var(--emerald);">500+</span> community
+        </h2>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(2,180px); gap:14px;" class="rv">
+        <div style="border-radius:var(--r-md); overflow:hidden; border:2px solid var(--fg); grid-column:1; grid-row:1; box-shadow:4px 4px 0 var(--pink);">
+          <img src="https://placehold.co/300x180/F472B6/FFFFFF?text=Community" alt="" style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        <div style="border-radius:var(--r-md); overflow:hidden; border:2px solid var(--fg); grid-column:2; grid-row:1; box-shadow:4px 4px 0 var(--amber);">
+          <img src="https://placehold.co/300x180/FBBF24/1E293B?text=Community" alt="" style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        <div style="border-radius:var(--r-md); overflow:hidden; border:2px solid var(--fg); grid-column:3; grid-row:1/3; box-shadow:4px 4px 0 var(--accent);">
+          <img src="https://placehold.co/300x374/8B5CF6/FFFFFF?text=Modus+Community" alt="" style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        <div style="border-radius:var(--r-md); overflow:hidden; border:2px solid var(--fg); grid-column:4; grid-row:1; box-shadow:4px 4px 0 var(--emerald);">
+          <img src="https://placehold.co/300x180/34D399/1E293B?text=Community" alt="" style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        <div style="border-radius:var(--r-md); overflow:hidden; border:2px solid var(--fg); grid-column:1/3; grid-row:2; box-shadow:4px 4px 0 var(--emerald);">
+          <img src="https://placehold.co/614x180/34D399/1E293B?text=Modus+Care+Community" alt="" style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+        <div style="border-radius:var(--r-md); overflow:hidden; border:2px solid var(--fg); grid-column:4; grid-row:2; box-shadow:4px 4px 0 var(--pink);">
+          <img src="https://placehold.co/300x180/F472B6/FFFFFF?text=Community" alt="" style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       CTA
+  ═════════════════════════════════════════ -->
+  <section id="contact" style="padding:100px 0; background:var(--amber); border-top:2px solid var(--fg); border-bottom:2px solid var(--fg); position:relative; overflow:hidden;">
+
+    <!-- Confetti decorations -->
+    <div class="fa" style="position:absolute; top:-30px; left:5%; width:160px; height:160px; border-radius:50%; background:white; border:2px solid var(--fg); opacity:0.35; pointer-events:none;"></div>
+    <div class="fb" style="position:absolute; bottom:-40px; right:8%; width:200px; height:200px; border-radius:50%; background:var(--accent); border:2px solid var(--fg); opacity:0.2; pointer-events:none;"></div>
+    <div class="fc" style="position:absolute; top:20%; right:3%; pointer-events:none; opacity:0.6;">
+      <svg width="50" height="50" viewBox="0 0 50 50"><polygon points="25,3 47,47 3,47" fill="var(--fg)" stroke="var(--fg)" stroke-width="1.5"/></svg>
+    </div>
+    <div class="fa" style="position:absolute; bottom:15%; left:10%; pointer-events:none; opacity:0.5;">
+      <svg width="40" height="40" viewBox="0 0 40 40"><rect x="5" y="5" width="30" height="30" fill="var(--pink)" stroke="var(--fg)" stroke-width="2" transform="rotate(15 20 20)"/></svg>
+    </div>
+    <div style="position:absolute; top:10%; left:35%; pointer-events:none; opacity:0.3;">
+      <svg width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="var(--accent)" stroke="var(--fg)" stroke-width="2"/></svg>
+    </div>
+
+    <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; position:relative; z-index:1;">
+
+      <!-- Left: image -->
+      <div class="rv">
+        <img src="brand_assets\people_with_backgrounds\white background.jpg"
+          alt="Ready to get started with Modus Care"
+          style="width:100%; border-radius:24px 24px 24px 0; border:2px solid var(--fg); box-shadow:8px 8px 0 var(--fg);" />
+      </div>
+
+      <!-- Right: copy -->
+      <div class="rv" style="transition-delay:0.1s;">
+        <h2 style="font-family:'Outfit',sans-serif; font-weight:900; font-size:clamp(2.2rem,4vw,3.2rem); color:var(--fg); margin-bottom:20px; line-height:1.1;">
+          Want to get<br />started?
+        </h2>
+        <p style="font-size:1.05rem; font-weight:700; color:var(--fg); line-height:1.6; margin-bottom:12px;">
+          Looking for NDIS support for yourself or a loved one?
+        </p>
+        <p style="color:rgba(30,41,59,0.72); font-size:0.97rem; line-height:1.75; margin-bottom:36px;">
+          Reach out to our friendly team today. We'll take the time to understand your needs and help you access the right services to achieve your goals.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:22px;">
+          <a href="tel:0450995102" class="btn-candy" style="background:var(--fg);">📞 Call Us Now <span class="arr" style="background:rgba(255,255,255,0.15);">→</span></a>
+          <a href="mailto:info@moduscare.com.au" class="btn-ghost">✉️ Email Us</a>
+        </div>
+        <p style="font-size:0.85rem; color:rgba(30,41,59,0.6); font-weight:500;">
+          Free initial consultation · No obligation · Fast response
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════
+       FOOTER
+  ═════════════════════════════════════════ -->
+  <footer style="background:var(--fg); padding:64px 0 32px;">
+    <div class="wrap">
+      <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:48px; margin-bottom:56px;">
+
+        <!-- Brand -->
+        <div>
+          <img src="brand_assets/Modus Care Logo.png" alt="Modus Care" style="height:44px; width:auto; margin-bottom:18px; filter:brightness(0) invert(1);" />
+          <p style="color:#94A3B8; font-size:0.88rem; line-height:1.75; margin-bottom:22px;">
+            Our promise is delivering compassionate, person-centred disability support services across Australia.
+          </p>
+          <!-- Social buttons -->
+          <div style="display:flex; gap:10px;">
+            <a href="#" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; color:#94A3B8; font-size:0.8rem; font-weight:700; font-family:'Outfit',sans-serif; transition:background 0.2s, color 0.2s;" onmouseover="this.style.background='#F472B6'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='#94A3B8';">f</a>
+            <a href="#" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; color:#94A3B8; font-size:0.75rem; font-weight:700; font-family:'Outfit',sans-serif; transition:background 0.2s, color 0.2s;" onmouseover="this.style.background='#8B5CF6'; this.style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='#94A3B8';">in</a>
+            <a href="https://www.instagram.com/modus.care" target="_blank" rel="noopener" style="width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); display:flex; align-items:center; justify-content:center; color:#94A3B8; font-size:0.75rem; font-weight:700; font-family:'Outfit',sans-serif; transition:background 0.2s, color 0.2s;" onmouseover="this.style.background='#FBBF24'; this.style.color='#1E293B';" onmouseout="this.style.background='rgba(255,255,255,0.08)'; this.style.color='#94A3B8';">ig</a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.78rem; color:white; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:18px;">Our Services</h4>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#F472B6'" onmouseout="this.style.color='#94A3B8'">Supported Independent Living</a></li>
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#F472B6'" onmouseout="this.style.color='#94A3B8'">Support Coordination</a></li>
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#F472B6'" onmouseout="this.style.color='#94A3B8'">Community Participation</a></li>
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#F472B6'" onmouseout="this.style.color='#94A3B8'">Daily Living & Life Skills</a></li>
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#F472B6'" onmouseout="this.style.color='#94A3B8'">Transport Assistance</a></li>
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#F472B6'" onmouseout="this.style.color='#94A3B8'">Therapy & Allied Health</a></li>
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.78rem; color:white; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:18px;">Quick Links</h4>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;">
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#FBBF24'" onmouseout="this.style.color='#94A3B8'">About Us</a></li>
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#FBBF24'" onmouseout="this.style.color='#94A3B8'">Locations</a></li>
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#FBBF24'" onmouseout="this.style.color='#94A3B8'">Resources</a></li>
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#FBBF24'" onmouseout="this.style.color='#94A3B8'">Blog & News</a></li>
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#FBBF24'" onmouseout="this.style.color='#94A3B8'">Careers</a></li>
+            <li><a href="#" style="color:#94A3B8; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#FBBF24'" onmouseout="this.style.color='#94A3B8'">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 style="font-family:'Outfit',sans-serif; font-weight:700; font-size:0.78rem; color:white; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:18px;">Contact</h4>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;">
+            <li style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1rem; margin-top:1px;">📞</span>
+              <div>
+                <div style="color:white; font-weight:700; font-size:0.88rem;">0450 995 102</div>
+                <div style="color:#64748B; font-size:0.78rem;">Mon–Fri, 8am–6pm AEST</div>
+              </div>
+            </li>
+            <li style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1rem; margin-top:1px;">✉️</span>
+              <a href="mailto:info@moduscare.com.au" style="color:#8B5CF6; font-size:0.88rem; transition:color 0.2s;" onmouseover="this.style.color='#A78BFA'" onmouseout="this.style.color='#8B5CF6'">info@moduscare.com.au</a>
+            </li>
+            <li style="display:flex; gap:10px; align-items:flex-start;">
+              <span style="font-size:1rem; margin-top:1px;">📍</span>
+              <div style="color:#64748B; font-size:0.88rem; line-height:1.7;">Melbourne VIC<br />Sydney NSW<br />Brisbane QLD</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; padding-top:28px; border-top:1px solid rgba(255,255,255,0.08);">
+        <p style="color:#475569; font-size:0.82rem;">© 2025 Modus Care. All rights reserved. Disability Support Services.</p>
+        <div style="display:flex; gap:20px; flex-wrap:wrap;">
+          <a href="#" style="color:#475569; font-size:0.82rem; transition:color 0.2s;" onmouseover="this.style.color='#94A3B8'" onmouseout="this.style.color='#475569'">Privacy Policy</a>
+          <a href="#" style="color:#475569; font-size:0.82rem; transition:color 0.2s;" onmouseover="this.style.color='#94A3B8'" onmouseout="this.style.color='#475569'">Terms of Service</a>
+          <a href="#" style="color:#475569; font-size:0.82rem; transition:color 0.2s;" onmouseover="this.style.color='#94A3B8'" onmouseout="this.style.color='#475569'">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═════════════════════════════════════════
+       JAVASCRIPT
+  ═════════════════════════════════════════ -->
+  <script>
+    // ── Responsive nav ──
+    (function(){
+      var w = window.innerWidth;
+      function applyNav(){
+        var links = document.querySelector('.desktop-links');
+        var ham   = document.getElementById('ham-btn');
+        var cta   = document.getElementById('nav-cta-desk');
+        if(window.innerWidth < 900){
+          links && (links.style.display = 'none');
+          ham   && (ham.style.display   = 'flex');
+          cta   && (cta.style.display   = 'none');
+        } else {
+          links && (links.style.display = 'flex');
+          ham   && (ham.style.display   = 'none');
+          cta   && (cta.style.display   = 'inline-flex');
+        }
+      }
+      applyNav();
+      window.addEventListener('resize', applyNav);
+
+      // Close mobile nav on link click
+      document.querySelectorAll('#mobile-nav a').forEach(function(a){
+        a.addEventListener('click', function(){
+          document.getElementById('mobile-nav').classList.remove('open');
+        });
+      });
+    })();
+
+    // ── Scroll reveal ──
+    (function(){
+      var els = document.querySelectorAll('.rv');
+      var io  = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      els.forEach(function(el){ io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
