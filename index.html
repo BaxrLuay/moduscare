@@ -356,6 +356,10 @@
         gap: 28px !important;
       }
 
+      /* ── Why copy centre on mobile ── */
+      .why-copy { text-align: center; }
+      .why-copy .section-label { justify-content: center; }
+
       /* ── Why grid ── */
       .why-outer-grid {
         grid-template-columns: 1fr !important;
@@ -543,7 +547,7 @@
         <!-- Buttons -->
         <div class="btn-stack rv" style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:44px; transition-delay:0.21s;">
           <a href="#services" class="btn-candy">Explore Services <span class="arr">→</span></a>
-          <a href="#contact"  class="btn-ghost">Get in Touch</a>
+          <a href="#contact" class="btn-ghost">Get in Touch</a>
         </div>
 
         <!-- Mini trust stats -->
@@ -859,7 +863,7 @@
       <div class="why-outer-grid" style="display:grid; grid-template-columns:1fr 1.1fr; gap:72px; align-items:start;">
 
         <!-- LEFT: heading + image -->
-        <div class="rv">
+        <div class="rv why-copy">
           <div class="section-label" style="margin-bottom:20px;">Why Us</div>
           <h2 style="font-weight:800; font-size:clamp(1.8rem,3vw,2.6rem); color:var(--fg); margin-bottom:18px;">
             Why choose<br />Modus Care?
