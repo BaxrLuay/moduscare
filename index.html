@@ -333,6 +333,11 @@
         gap: 48px !important;
       }
       .about-img-col .fb { display: none; } /* hide floating card to avoid overflow */
+      .about-copy { text-align: center; }
+      .about-copy .section-label { justify-content: center; }
+      .about-copy .check-row { text-align: left; }
+      .about-copy .btn-stack,
+      .about-copy .about-btn { display: flex; justify-content: center; }
 
       /* ── Services grid ── */
       .services-grid {
@@ -664,7 +669,7 @@
       </div>
 
       <!-- RIGHT: copy -->
-      <div>
+      <div class="about-copy">
         <div class="section-label rv" style="margin-bottom:20px;">Our Promise</div>
         <h2 class="rv" style="font-weight:800; font-size:clamp(1.8rem,3vw,2.6rem); color:var(--fg); margin-bottom:18px; transition-delay:0.07s;">
           Your journey,<br /><span class="squig" style="color:var(--accent);">our commitment.</span>
@@ -697,7 +702,7 @@
           </div>
         </div>
 
-        <div class="rv" style="transition-delay:0.28s;">
+        <div class="rv about-btn" style="transition-delay:0.28s;">
           <a href="#contact" class="btn-candy">Learn More About Us <span class="arr">→</span></a>
         </div>
       </div>
