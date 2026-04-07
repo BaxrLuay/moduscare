@@ -30,14 +30,17 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip; /* clip doesn't break position:sticky unlike hidden */
+    }
     body {
       font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       background: var(--bg);
       color: var(--fg);
       margin: 0;
       line-height: 1.6;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
     h1, h2, h3, h4, h5 {
       font-family: 'Outfit', system-ui, sans-serif;
